@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 interface User {
   email: string;
   password: string;
+  name?: string; // 이름 추가
+  phoneNumber?: string; // 전화번호 추가
 }
 
 const Login = () => {
@@ -12,6 +14,8 @@ const Login = () => {
   const [passwordLogin, setPasswordLogin] = useState('');
   const [emailRegister, setEmailRegister] = useState('');
   const [passwordRegister, setPasswordRegister] = useState('');
+  const [nameRegister, setNameRegister] = useState(''); // 이름 상태 추가
+  const [phoneNumberRegister, setPhoneNumberRegister] = useState(''); // 전화번호 상태 추가
   const [activeForm, setActiveForm] = useState('login');
   const [message, setMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -37,6 +41,8 @@ const Login = () => {
     } else {
       setEmailRegister('');
       setPasswordRegister('');
+      setNameRegister(''); // 이름 초기화
+      setPhoneNumberRegister(''); // 전화번호 초기화
     }
   }, [activeForm]);
 
@@ -77,7 +83,12 @@ const Login = () => {
       return;
     }
 
-    const newUser: User = { email: emailRegister, password: passwordRegister };
+    const newUser: User = { 
+      email: emailRegister, 
+      password: passwordRegister,
+      name: nameRegister, // 이름 추가
+      phoneNumber: phoneNumberRegister // 전화번호 추가
+    };
     localStorage.setItem('registeredUser', JSON.stringify(newUser));
 
     setMessage('회원가입 완료! 로그인해주세요.');
@@ -152,6 +163,26 @@ const Login = () => {
       ) : (
         <form onSubmit={handleRegisterSubmit} className="form">
           <div className="form-group">
+            <label htmlFor="nameRegister">이름</label>
+            <input
+              type="text"
+              id="nameRegister"
+              value={nameRegister}
+              onChange={(e) => setNameRegister(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phoneNumberRegister">전화번호</label>
+            <input
+              type="tel"
+              id="phoneNumberRegister"
+              value={phoneNumberRegister}
+              onChange={(e) => setPhoneNumberRegister(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
             <label htmlFor="emailRegister">이메일</label>
             <input
               type="email"
@@ -175,7 +206,7 @@ const Login = () => {
         </form>
       )}
 
-      {showAlert && (
+{showAlert && (
         <div 
           id="alert-modal" 
           className="alert-modal" 
@@ -276,13 +307,15 @@ const Login = () => {
           min-height: 120px;
         }
 
-        .confirm-button {
+        .
+                .confirm-button {
           padding: 10px 20px;
           background-color: #0070f3;
           color: white;
           border: none;
           border-radius: 4px;
           cursor: pointer;
+          margin-top: 15px;
         }
 
         .confirm-button:hover {

@@ -3,6 +3,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link'; // Link 컴포넌트 가져오기
 
+
+//document.addEventListener("DOMContentLoaded", function() {
+  // 초기화 코드
+//});
+
 interface FaqItem {
   question: string;
   answer: string;
@@ -54,14 +59,14 @@ const Faq: React.FC = () => {
 
       <style jsx>{`
         .faq-background {
-          padding: 40px 20px;
+          padding: 0px 20px;
           background-color: #f9f9f9;
         }
 
         .faq-container {
           margin: auto;
           margin-top: 5px;
-          width: 75%; /* 부모의 너비를 100%로 설정 */
+          width: 68%; /* 부모의 너비를 100%로 설정 */
         }
 
         .logo {

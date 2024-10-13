@@ -29,17 +29,20 @@ export function Intro() {
     <>
       <section className="relative flex-col md:flex-row flex items-start md:justify-center mt-16 mb-16 md:mb-12 fixed-menu">
         <Link href="/" className="logo-text">
-          Ai Voice Labs
+          로고 추가
         </Link>
 
         <div className="flex flex-col md:flex-row items-center justify-center mt-5 md:mt-0 button-container">
+        <Link href="/" className="menu-button mr-4">
+            메인
+          </Link>
           <Link href="/guide" className="menu-button mr-4">
             가이드
           </Link>
           <Link href="/faq" className="menu-button mr-4">
             FAQ
           </Link>
-          <Link href="/contact" className="menu-button mr-4">
+          <Link href="/inquiry" className="menu-button mr-4">
             문의
           </Link>
           <Link href="/notification" className="menu-button mr-4">

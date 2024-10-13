@@ -13,20 +13,7 @@ body {
   background-color: #FFFFFF; /* 헤더 배경 색 */
 }
 
-.logo img {
-  height: 40px; /* 로고 크기 */
-  margin-top: 10px;
-  cursor: pointer; /* 마우스 포인터 변경 */
-}
 
-.logo {
-  margin-left: 50px; /* 홈 버튼을 오른쪽으로 이동 */
-}
-
-.site-title img {
-  height: 40px; /* 제목 이미지 크기 조정 */
-  margin-top: 14px; /* 아래로 내리기 */
-}
 
 .faq-container {
   max-width: 1500px; /* 박스 길이 */
@@ -46,24 +33,15 @@ ul {
 }
 
 .faq-item {
-  margin: 20px 0;
-  border: 1px solid #fff;
-  border-radius: 5px;
+  margin: 20px 0; /* 상하 여백 */
+  border-top: 1px solid #ddd; /* 상단 구분선 */
+  border-bottom: 1px solid #ddd; /* 하단 구분선 */
   background-color: #fff;
-  padding: 15px;
-  transition: box-shadow 0.3s, transform 0.3s;
+  padding: 15px; /* 내부 여백 */
+  transition: transform 0.0s; /* 그림자 제거 */
+  min-height: 30px; /* 최소 높이 설정 */
 }
 
-.faq-item:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transform: scale(1.02);
-}
-
-h2 {
-  margin: 0;
-  font-size: 20px;
-  color: #1170f3; /* 글 색 */
-}
 
 .faq-answer {
   overflow: hidden;
@@ -87,55 +65,19 @@ p {
   transform: rotate(180deg);
 }
 
-/* 문의 사항 폼 스타일 추가 */
-.inquiry-form {
-  margin-top: 20px;
-  background-color: #fff; /* 배경 색 */
-  border: 1px solid #ddd; /* 테두리 색 */
-  border-radius: 5px; /* 모서리 둥글기 */
-  padding: 20px; /* 내부 여백 */
+.faq-answer {
+  overflow: hidden;
+  padding-top: 10px;
+  color: #fff;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out; /* 패딩 애니메이션 추가 */
+  max-height: 0; /* 기본적으로 닫힌 상태 */
+  transform: translateY(-10px);
 }
 
-.inquiry-form div {
-  margin-bottom: 15px; /* 각 입력 필드 사이 여백 */
-}
-
-label {
-  display: block; /* 레이블을 블록으로 표시 */
-  margin-bottom: 5px; /* 레이블과 입력 필드 사이 여백 */
-}
-
-input[type="text"], input[type="email"] {
-  width: 100%; /* 가로 길이 조정 */
-  height: 40px; /* 높이 조절 */
-  padding: 10px; /* 내부 여백 */
-  border: 1px solid #ddd; /* 테두리 색상 */
-  border-radius: 5px; /* 모서리 둥글기 */
-  box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 계산 */
-}
-
-textarea {
-  width: 100%; /* 전체 너비 사용 */
-  padding: 10px; /* 내부 여백 */
-  border: 1px solid #ddd; /* 테두리 색상 */
-  border-radius: 5px; /* 모서리 둥글기 */
-  box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 계산 */
-  height: 100px; /* 텍스트 영역 높이 조정 */
-  resize: none; /* 세로로 크기 조정 가능하게 설정 */
-}
-
-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #0070f3; /* 버튼 배경 색 */
-  color: white; /* 버튼 텍스트 색 */
-  cursor: pointer; /* 커서 포인터로 변경 */
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #005bb5; /* 버튼 hover 색상 */
+.faq-answer.open {
+  max-height: 200px; /* 열릴 때 최대 높이 (충분히 큰 값으로 설정) */
+  transform: translateY(0);
+  padding-top: 10px; /* 열린 상태에서 패딩을 주기 */
 }
 
 /* 미디어 쿼리 
