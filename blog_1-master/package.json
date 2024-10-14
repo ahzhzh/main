@@ -8,7 +8,10 @@
   "dependencies": {
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
+<<<<<<< HEAD
     "firebase": "^10.14.1",
+=======
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
     "gray-matter": "^4.0.3",
     "next": "latest",
     "react": "^18.3.1",

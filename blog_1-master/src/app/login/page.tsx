@@ -1,9 +1,13 @@
 "use client"; 
 
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { auth, db } from './firebaseconfig'; // Firestore도 가져오기
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore'; // Firestore 함수 추가
+=======
+import React, { useState, useEffect } from 'react';
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
 
 interface User {
   email: string;
@@ -17,13 +21,19 @@ const Login = () => {
   const [passwordLogin, setPasswordLogin] = useState('');
   const [emailRegister, setEmailRegister] = useState('');
   const [passwordRegister, setPasswordRegister] = useState('');
+<<<<<<< HEAD
   const [nameRegister, setNameRegister] = useState('');
   const [phoneNumberRegister, setPhoneNumberRegister] = useState('');
+=======
+  const [nameRegister, setNameRegister] = useState(''); // 이름 상태 추가
+  const [phoneNumberRegister, setPhoneNumberRegister] = useState(''); // 전화번호 상태 추가
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
   const [activeForm, setActiveForm] = useState('login');
   const [message, setMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [isError, setIsError] = useState(false);
   
+<<<<<<< HEAD
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -75,13 +85,112 @@ const Login = () => {
       setShowAlert(true);
       console.error('회원가입 오류:', error);
     }
+=======
+  const getRegisteredUser = (): User | null => {
+    const userData = localStorage.getItem('registeredUser');
+    return userData ? JSON.parse(userData) : null;
+  };
+
+  useEffect(() => {
+    const user = getRegisteredUser();
+    if (user) {
+      setEmailRegister(user.email);
+      setPasswordRegister(user.password);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeForm === 'login') {
+      setEmailLogin('');
+      setPasswordLogin('');
+    } else {
+      setEmailRegister('');
+      setPasswordRegister('');
+      setNameRegister(''); // 이름 초기화
+      setPhoneNumberRegister(''); // 전화번호 초기화
+    }
+  }, [activeForm]);
+
+  const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const registeredUser = getRegisteredUser();
+
+    const isSuccess = registeredUser && 
+                      emailLogin === registeredUser.email && 
+                      passwordLogin === registeredUser.password;
+
+    if (isSuccess) {
+      setMessage('로그인 완료!');
+      setIsError(false);
+      setShowAlert(true);
+
+      const token = 'your_auth_token';
+      localStorage.setItem('token', token);
+
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500);
+    } else {
+      setMessage('로그인 실패! 다시 시도해 주세요.');
+      setIsError(true);
+      setShowAlert(true);
+    }
+  };
+
+  const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const registeredUser = getRegisteredUser();
+
+    if (registeredUser && emailRegister === registeredUser.email) {
+      setMessage('이미 가입된 이메일입니다. 로그인해주세요.');
+      setIsError(true);
+      setShowAlert(true);
+      return;
+    }
+
+    const newUser: User = { 
+      email: emailRegister, 
+      password: passwordRegister,
+      name: nameRegister, // 이름 추가
+      phoneNumber: phoneNumberRegister // 전화번호 추가
+    };
+    localStorage.setItem('registeredUser', JSON.stringify(newUser));
+
+    setMessage('회원가입 완료! 로그인해주세요.');
+    setIsError(false);
+    setShowAlert(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setShowAlert(true);
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
   };
 
   const handleAlertConfirm = () => {
     setShowAlert(false);
+<<<<<<< HEAD
     setActiveForm('login');
   };
 
+=======
+    setActiveForm('login'); // 로그인 폼으로 이동
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleAlertConfirm();
+    }
+  };
+
+  useEffect(() => {
+    if (showAlert) {
+      const modal = document.getElementById('alert-modal');
+      modal?.focus();
+    }
+  }, [showAlert]);
+
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
   return (
     <div className="container">
       <div className="tabs">
@@ -169,8 +278,18 @@ const Login = () => {
         </form>
       )}
 
+<<<<<<< HEAD
       {showAlert && (
         <div className="alert-modal">
+=======
+{showAlert && (
+        <div 
+          id="alert-modal" 
+          className="alert-modal" 
+          onKeyDown={handleKeyDown} 
+          tabIndex={0}
+        >
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
           <div className="alert-content" style={{ minHeight: '120px' }}>
             <p>{message}</p>
             <button className="confirm-button" onClick={handleAlertConfirm}>확인</button>
@@ -265,7 +384,12 @@ const Login = () => {
           min-height: 120px;
         }
 
+<<<<<<< HEAD
         .confirm-button {
+=======
+        .
+                .confirm-button {
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
           padding: 10px 20px;
           background-color: #0070f3;
           color: white;
@@ -283,4 +407,8 @@ const Login = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Login;
+=======
+export default Login;
+>>>>>>> d810abaf519ed53702113feabc47991bf969593a
