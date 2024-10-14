@@ -1,0 +1,96 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF80; /* 배경 색 */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  position: relative;
+  background-color: #FFFFFF; /* 헤더 배경 색 */
+}
+
+
+
+.faq-container {
+  max-width: 1500px; /* 박스 길이 */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.faq-item {
+  margin: 20px 0; /* 상하 여백 */
+  border-top: 1px solid #ddd; /* 상단 구분선 */
+  border-bottom: 1px solid #ddd; /* 하단 구분선 */
+  background-color: #fff;
+  padding: 15px; /* 내부 여백 */
+  transition: transform 0.0s; /* 그림자 제거 */
+  min-height: 30px; /* 최소 높이 설정 */
+}
+
+
+.faq-answer {
+  overflow: hidden;
+  padding-top: 10px;
+  color: #111;
+  transition: max-height 0.3s ease-in-out, transform 0.3s ease-in-out;
+  max-height: 500px; /* 충분히 큰 값으로 설정 */
+  transform: translateY(-10px);
+}
+
+.faq-question {
+  cursor: pointer;
+  padding: 20px; /* 클릭 영역 확대 */
+}
+
+p {
+  margin: 0;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  overflow: hidden;
+  padding-top: 10px;
+  color: #fff;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out; /* 패딩 애니메이션 추가 */
+  max-height: 0; /* 기본적으로 닫힌 상태 */
+  transform: translateY(-10px);
+}
+
+.faq-answer.open {
+  max-height: 200px; /* 열릴 때 최대 높이 (충분히 큰 값으로 설정) */
+  transform: translateY(0);
+  padding-top: 10px; /* 열린 상태에서 패딩을 주기 */
+}
+
+/* 미디어 쿼리 
+@media (max-width: 600px) {
+  .faq-item {
+      padding: 10px;
+  }
+
+  h1 {
+      font-size: 24px;
+  }
+
+  h2 {
+      font-size: 16px;
+  }
+}*/
